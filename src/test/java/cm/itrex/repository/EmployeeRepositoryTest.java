@@ -19,9 +19,19 @@ class EmployeeRepositoryTest extends IntegrationTest {
 
     private static final Integer IVAN_ID = 1;
 
-
     @Autowired
     EmployeeRepository employeeRepository;
+
+//    @BeforeEach
+//    void setUp() {
+//        var hikariConfig = new HikariConfig();
+//        hikariConfig.setJdbcUrl(POSTGRESQL_CONTAINER.getJdbcUrl());// Получить реальный jdbcUrl
+//        hikariConfig.setUsername(POSTGRESQL_CONTAINER.getUsername());// Получить username
+//        hikariConfig.setPassword(POSTGRESQL_CONTAINER.getPassword());// Получить password
+//        var dataSource = new HikariDataSource(hikariConfig);
+//        employeeRepository = new SpringJdbcFrameworkRepository(new FrameworkSimpleJdbcInsert(dataSource),
+//                new JdbcTemplate(dataSource), FrameworkRowMapper.getInstance());
+//    }
 
     @Test
     void findById() {
@@ -31,29 +41,29 @@ class EmployeeRepositoryTest extends IntegrationTest {
 
     @Test
     void findAllByFirstNameAndSalary() {
-        List<Employee> employee = employeeRepository.findAllByFirstNameAndSalary("Ivan",1000);
-        assertThat(employee,hasSize(1));
+        List<Employee> employee = employeeRepository.findAllByFirstNameAndSalary("Ivan", 1000);
+        assertThat(employee, hasSize(1));
     }
 
     @Test
-    void findBySalary(){
+    void findBySalary() {
         List<EmployeeNameView> nameViews = employeeRepository.findAllBySalaryGreaterThan(500);
-        assertThat(nameViews,hasSize(2));
-        assertEquals(nameViews.get(0).getFirstName(),"1 Ivan");
+        assertThat(nameViews, hasSize(2));
+        assertEquals(nameViews.get(0).getFirstName(), "1 Ivan");
     }
 
     @Test
-    void findBySalaryFullName(){
+    void findBySalaryFullName() {
         List<EmployeeNameViewFull> nameViews = employeeRepository.findAllBySalaryGreaterThanNative(500);
-        assertThat(nameViews,hasSize(2));
-        assertEquals(nameViews.get(0).getFullName(),"Ivan Ivanov");
+        assertThat(nameViews, hasSize(2));
+        assertEquals(nameViews.get(0).getFullName(), "Ivan Ivanov");
     }
 
     @Test
-    void findCustomQuery(){
+    void findCustomQuery() {
         List<Employee> customQuery = employeeRepository.findCustomQuery();
 
-        assertThat(customQuery,hasSize(1));
-        assertEquals(customQuery.get(0).getFirstName(),"Olga");
+        assertThat(customQuery, hasSize(1));
+        assertEquals(customQuery.get(0).getFirstName(), "Olga");
     }
 }

@@ -1,6 +1,8 @@
 service.message: Hello World 2
 
-spring.jpa:
-  show-sql: true
-  properties:
-    hibernate.format_sql: true
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+

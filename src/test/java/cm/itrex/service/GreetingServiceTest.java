@@ -1,18 +1,14 @@
 package cm.itrex.service;
 
+import cm.itrex.IntegrationTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ActiveProfiles("test")
-@SpringBootTest
-public class GreetingServiceTest {
+public class GreetingServiceTest extends IntegrationTest {
 
     @Autowired
     private GreetingService greetingService;

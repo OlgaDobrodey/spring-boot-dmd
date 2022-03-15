@@ -5,11 +5,12 @@ import cm.itrex.projection.EmployeeNameView;
 import cm.itrex.projection.EmployeeNameViewFull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Integer>, EmployeeCustomRepository{
+public interface EmployeeRepository extends JpaRepository<Employee, Integer>, EmployeeCustomRepository {
 
     // @Query("select e from EmployeeEntity e where e.firstName = :name and e.salary = :salary")
 //    @Query(value = "select e.* from employee e where e.first_name = :name and e.salary = :salary",
@@ -25,4 +26,4 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>, Em
             "from employee e " +
             "where e.salary > :salary", nativeQuery = true)
     List<EmployeeNameViewFull> findAllBySalaryGreaterThanNative(@Param("salary") Integer salary);
-}
+  }

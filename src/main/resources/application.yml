@@ -6,3 +6,10 @@ spring:
     password: postgres
     url: jdbc:postgresql://localhost:5432/company
     driver-class-name: org.postgresql.Driver
+
+  # V(version)__description.sql
+  flyway:
+#    schemas:
+#      - test_schema
+    sql-migration-prefix: V
+    baseline-on-migrate: true  #create db second times
